@@ -1,9 +1,10 @@
 #include "chatserver.hpp"
 #include "chatservice.hpp"
+#include "pool.h"
 #include <iostream>
 #include <signal.h>
 using namespace std;
-
+ConnectionPool *pool = nullptr;
 // 处理服务器ctrl+c结束后，重置user的状态信息
 void resetHandler(int)
 {
@@ -24,7 +25,7 @@ int main(int argc, char **argv)
     uint16_t port = atoi(argv[2]);
 
     signal(SIGINT, resetHandler);
-
+    pool = ConnectionPool::getConnectPool(); // 得到一个连接池实例
     EventLoop loop;
     InetAddress addr(ip, port);
     ChatServer server(&loop, addr, "ChatServer");
