@@ -4,7 +4,7 @@
 // 数据库配置信息
 static string server = "172.18.16.1";
 static string user = "root";
-static string password = "Yxy690426.";
+static string password = "1111111";
 static string dbname = "chat";
 
 // 初始化数据库连接
